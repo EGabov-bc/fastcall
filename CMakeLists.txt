@@ -17,10 +17,10 @@ cmake_minimum_required(VERSION 2.8)
 # Detect if production or developer mode.
 # .npmignore excludes "test" directory, so:
 set(prod TRUE)
-set(testDir "${CMAKE_SOURCE_DIR}/test")
-if(EXISTS "${testDir}" AND IS_DIRECTORY "${testDir}")
-  set(prod FALSE)
-endif()
+#set(testDir "${CMAKE_SOURCE_DIR}/test")
+#if(EXISTS "${testDir}" AND IS_DIRECTORY "${testDir}")
+#  set(prod FALSE)
+#endif()
 
 # Configure CCache if available
 find_program(CCACHE_FOUND ccache)
