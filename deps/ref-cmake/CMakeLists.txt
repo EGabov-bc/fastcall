@@ -14,9 +14,20 @@
 
 file(GLOB SRC ../ref/src/*.h* ../ref/src/*.c*)
 
+if(WIN32)
+  set(WIN_DELAY_LOAD_HOOK "../../src/win_delay_load_hook.cc")
+  list (APPEND SRC ${WIN_DELAY_LOAD_HOOK})
+endif()
+
 add_library(ref SHARED ${SRC})
 
 target_link_libraries (ref ${CMAKE_JS_LIB})
+
+if(MSVC)
+  set(node_host_binary node)
+  add_compile_definitions(HOST_BINARY=\"${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}\")
+  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/DELAYLOAD:${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}")
+endif()
 
 set_target_properties(
   ref
