@@ -17,7 +17,7 @@ if(WIN32)
   set(WIN_DELAY_LOAD_HOOK "win_delay_load_hook.cc")
 else()
   file(GLOB SRC *.h* *.c*)
-  list(REMOVE_ITEM SRC "win_delay_load_hook.cc")
+  list(FILTER SRC EXCLUDE REGEX ".*win_delay_load_hook.cc$")
 endif()
 
 add_library(${PROJECT_NAME} SHARED ${SRC})
