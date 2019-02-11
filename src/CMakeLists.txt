@@ -12,7 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-file(GLOB SRC *.h* *.c*)
+if(WIN32)
+  file(GLOB SRC *.h* *.c*)
+  set(WIN_DELAY_LOAD_HOOK "win_delay_load_hook.cc")
+else()
+  file(GLOB SRC *.h* *.c*)
+  list(REMOVE_ITEM SRC "win_delay_load_hook.cc")
+endif()
 
 add_library(${PROJECT_NAME} SHARED ${SRC})
 
@@ -21,6 +27,12 @@ target_link_libraries (${PROJECT_NAME}
   ${DYNCALL_LIBRARIES}
   ${DYNCALLBACK_LIBRARIES}
   ${DYNLOAD_LIBRARIES})
+
+if(MSVC)
+  set(node_host_binary node)
+  add_compile_definitions(HOST_BINARY=\"${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}\")
+  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/DELAYLOAD:${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}")
+endif()
 
 set_target_properties(
   ${PROJECT_NAME}
