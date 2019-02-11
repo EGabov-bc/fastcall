@@ -26,7 +26,7 @@ target_link_libraries (ref ${CMAKE_JS_LIB})
 if(MSVC)
   set(node_host_binary node)
   add_compile_definitions(HOST_BINARY=\"${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}\")
-  set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "/DELAYLOAD:${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}")
+  set_target_properties(ref PROPERTIES LINK_FLAGS "/DELAYLOAD:${node_host_binary}${CMAKE_EXECUTABLE_SUFFIX}")
 endif()
 
 set_target_properties(
