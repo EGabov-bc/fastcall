@@ -11,7 +11,7 @@
     "babel-polyfill": "^6.16.0",
     "bindings": "1",
     "bluebird": "3",
-    "cmake-js": "5",
+    "cmake-js": "5.1.1",
     "lodash": ">=4.17.5",
     "minimist": "^1.2.0",
     "nan": "^2.12.0",
