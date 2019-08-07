@@ -36,7 +36,7 @@ char V8ThreadCallbackHandler(DCArgs* args, DCValue* result, CallbackUserData* cb
     executeArgs[1] = WrapPointer(result);
     executeArgs[2] = Nan::New(cbUserData->func);
     auto execute = Nan::New(cbUserData->execute);
-    execute->Call(Nan::Undefined(), 3, executeArgs);
+    Nan::Call(execute, Nan::Undefined(), 3, executeArgs);
     return cbUserData->resultTypeCode;
 }
 
