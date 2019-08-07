@@ -64,7 +64,7 @@ NAN_MODULE_INIT(fastcall::InitDynloadWrapper)
 {
     auto dynload = Nan::New<Object>();
     Nan::Set(target, Nan::New<String>("dynload").ToLocalChecked(), dynload);
-    Nan::Set(dynload, Nan::New<String>("loadLibrary").ToLocalChecked(), Nan::New<FunctionTemplate>(loadLibrary)->GetFunction());
-    Nan::Set(dynload, Nan::New<String>("freeLibrary").ToLocalChecked(), Nan::New<FunctionTemplate>(freeLibrary)->GetFunction());
-    Nan::Set(dynload, Nan::New<String>("findSymbol").ToLocalChecked(), Nan::New<FunctionTemplate>(findSymbol)->GetFunction());
+    Nan::Set(dynload, Nan::New<String>("loadLibrary").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(loadLibrary)).ToLocalChecked());
+    Nan::Set(dynload, Nan::New<String>("freeLibrary").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(freeLibrary)).ToLocalChecked());
+    Nan::Set(dynload, Nan::New<String>("findSymbol").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(findSymbol)).ToLocalChecked());
 }

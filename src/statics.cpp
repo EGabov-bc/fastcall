@@ -42,7 +42,7 @@ uv_thread_t mainThreadHandle;
 NAN_MODULE_INIT(fastcall::InitStatics)
 {
     savedTarget.Reset(target);
-    Nan::Set(target, Nan::New<String>("makeStringBuffer").ToLocalChecked(), Nan::New<FunctionTemplate>(makeStringBuffer)->GetFunction());
+    Nan::Set(target, Nan::New<String>("makeStringBuffer").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(makeStringBuffer)).ToLocalChecked());
 #ifdef WIN32
     mainThreadId = GetCurrentThreadId();
 #else

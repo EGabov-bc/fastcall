@@ -29,7 +29,8 @@ struct WatchStuff {
         WatchStuff* self = data.GetParameter();
 
         Nan::HandleScope scope;
-        Nan::New(self->callback)->Call(Nan::Undefined(), 0, nullptr);
+        auto cb = Nan::New(self->callback);
+        Nan::Call(cb, cb->CreationContext()->Global(), 0, nullptr);
 
         delete self;
     }
@@ -62,6 +63,6 @@ NAN_MODULE_INIT(fastcall::InitWeak)
 {
     auto weak = Nan::New<Object>();
     Nan::Set(target, Nan::New<String>("weak").ToLocalChecked(), weak);
-    Nan::Set(weak, Nan::New<String>("watch").ToLocalChecked(), Nan::New<FunctionTemplate>(watch)->GetFunction());
-    Nan::Set(weak, Nan::New<String>("adjustExternalMemory").ToLocalChecked(), Nan::New<FunctionTemplate>(adjustExternalMemory)->GetFunction());
+    Nan::Set(weak, Nan::New<String>("watch").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(watch)).ToLocalChecked());
+    Nan::Set(weak, Nan::New<String>("adjustExternalMemory").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(adjustExternalMemory)).ToLocalChecked());
 }

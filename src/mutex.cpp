@@ -48,7 +48,7 @@ NAN_MODULE_INIT(fastcall::InitMutex)
 {
     auto _mutex = Nan::New<Object>();
     Nan::Set(target, Nan::New<String>("mutex").ToLocalChecked(), _mutex);
-    Nan::Set(_mutex, Nan::New<String>("newMutex").ToLocalChecked(), Nan::New<FunctionTemplate>(newMutex)->GetFunction());
-    Nan::Set(_mutex, Nan::New<String>("lock").ToLocalChecked(), Nan::New<FunctionTemplate>(lock)->GetFunction());
-    Nan::Set(_mutex, Nan::New<String>("unlock").ToLocalChecked(), Nan::New<FunctionTemplate>(unlock)->GetFunction());
+    Nan::Set(_mutex, Nan::New<String>("newMutex").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(newMutex)).ToLocalChecked());
+    Nan::Set(_mutex, Nan::New<String>("lock").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(lock)).ToLocalChecked());
+    Nan::Set(_mutex, Nan::New<String>("unlock").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(unlock)).ToLocalChecked());
 }
