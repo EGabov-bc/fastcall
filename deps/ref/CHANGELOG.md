@@ -1,3 +1,62 @@
+1.4.3 / 2020-01-16
+==================
+
+* [[`33d46e71db`](https://github.com/node-ffi-napi/ref-napi/commit/33d46e71db)] - Update to jquery-3.4.1.min.js (Alan Ayoub) [#23](https://github.com/node-ffi-napi/ref-napi/pull/23)
+* [[`4b8f542c16`](https://github.com/node-ffi-napi/ref-napi/commit/4b8f542c16)] - **chore**: update marked to version 0.7.0 (greenkeeper[bot]) [#17](https://github.com/node-ffi-napi/ref-napi/pull/17)
+* [[`7137ebcfa1`](https://github.com/node-ffi-napi/ref-napi/commit/7137ebcfa1)] - **chore**: update node-addon-api to version 2.0.0 (greenkeeper[bot]) [#21](https://github.com/node-ffi-napi/ref-napi/pull/21)
+
+1.4.2 / 2019-01-07
+==================
+
+* [[`ed19a20370`](https://github.com/node-ffi-napi/ref-napi/commit/ed19a20370)] - Fix readUInt64 so that it returns positive numbers when high order bit is set (Paul Elder) [#20](https://github.com/node-ffi-napi/ref-napi/pull/20)
+
+1.4.1 / 2019-01-07
+==================
+
+* [[`f1827f3bdd`](https://github.com/node-ffi-napi/ref-napi/commit/f1827f3bdd)] - Update node-addon-api dependency to ^1.6.2 (Anna Henningsen)
+* [[`bf16e880fb`](https://github.com/node-ffi-napi/ref-napi/commit/bf16e880fb)] - chore(package): update marked to version 0.6.0 (#11) (greenkeeper[bot])
+* [[`bb92877339`](https://github.com/node-ffi-napi/ref-napi/commit/bb92877339)] - ***Revert*** "Update debug to 4.0.0" (Anna Henningsen)
+* [[`6fa4022605`](https://github.com/node-ffi-napi/ref-napi/commit/6fa4022605)] - Update debug to 4.0.0 (Anna Henningsen)
+* [[`3c98424bee`](https://github.com/node-ffi-napi/ref-napi/commit/3c98424bee)] - chore(package): update marked to version 0.5.0 (#7) (greenkeeper[bot])
+* [[`c9523cd587`](https://github.com/node-ffi-napi/ref-napi/commit/c9523cd587)] - chore(package): update nyc to version 12.0.1 (#6) (greenkeeper[bot])
+* [[`3f3f1b8efa`](https://github.com/node-ffi-napi/ref-napi/commit/3f3f1b8efa)] - chore(package): update marked to version 0.4.0 (#5) (greenkeeper[bot])
+* [[`1c2a878c7a`](https://github.com/node-ffi-napi/ref-napi/commit/1c2a878c7a)] - chore(package): update mocha to version 5.0.0 (#2) (greenkeeper[bot])
+* [[`0b35b34000`](https://github.com/node-ffi-napi/ref-napi/commit/0b35b34000)] - Explicitly test Node v4 (Anna Henningsen)
+* [[`74bbaa4cb6`](https://github.com/node-ffi-napi/ref-napi/commit/74bbaa4cb6)] - docs(readme): add Greenkeeper badge (greenkeeper[bot])
+* [[`bba04d75ce`](https://github.com/node-ffi-napi/ref-napi/commit/bba04d75ce)] - chore(package): update dependencies (greenkeeper[bot])
+* [[`0a77d1edde`](https://github.com/node-ffi-napi/ref-napi/commit/0a77d1edde)] - Bump node-addon-api to ^1.1.0 (Anna Henningsen)
+* [[`b8bac0aea0`](https://github.com/node-ffi-napi/ref-napi/commit/b8bac0aea0)] - Use full package name in README heading (Anna Henningsen)
+* [[`31bd8454a7`](https://github.com/node-ffi-napi/ref-napi/commit/31bd8454a7)] - Use matching branch name for badges in README.md (Anna Henningsen)
+* [[`46b0db449b`](https://github.com/node-ffi-napi/ref-napi/commit/46b0db449b)] - fix up package name in package.json (Anna Henningsen)
+
+1.4.0 / 2017-11-19
+==================
+
+* [[`0cd2129acf`](https://github.com/node-ffi-napi/ref/commit/0cd2129acf)] - Update information to new repository (Anna Henningsen)
+* [[`27171b2a96`](https://github.com/node-ffi-napi/ref/commit/27171b2a96)] - 🎉 Port code to N-API (Anna Henningsen)
+* [[`d23f403ab2`](https://github.com/node-ffi-napi/ref/commit/d23f403ab2)] - Add missing LICENSE file to match package.json (Anna Henningsen)
+* [[`9523598530`](https://github.com/node-ffi-napi/ref/commit/9523598530)] - Add Code of Conduct (Anna Henningsen)
+* [[`f0790af04d`](https://github.com/node-ffi-napi/ref/commit/f0790af04d)] - Refactor tests to ES6 (Anna Henningsen)
+* [[`924437f94b`](https://github.com/node-ffi-napi/ref/commit/924437f94b)] - fix `readPointer()` docs (#90) (John Cupitt)
+* [[`1029203b46`](https://github.com/node-ffi-napi/ref/commit/1029203b46)] - don't fail in Node.js "6.0.0 && \< 6.9.1" (#89) (btsimonh)
+* [[`4903350866`](https://github.com/node-ffi-napi/ref/commit/4903350866)] - Update docs about ref.address() being unsafe on 64-bit platforms (#88) (Yaacov Tarko)
+
+1.3.5 / 2017-01-27
+==================
+
+* [[`a1b8216fe7`](https://github.com/TooTallNate/ref/commit/a1b8216fe7)] - fix `util.inspect()` overriding on Node v7 (Nathan Rajlich)
+* [[`0e26fcf81e`](https://github.com/TooTallNate/ref/commit/0e26fcf81e)] - **appveyor**: drop node v2 and v3 (Nathan Rajlich)
+* [[`9e9078a4e1`](https://github.com/TooTallNate/ref/commit/9e9078a4e1)] - **travis**: drop node v1 and v2 (Nathan Rajlich)
+* [[`615016ac1a`](https://github.com/TooTallNate/ref/commit/615016ac1a)] - **test**: fix `util.inspect()` test (Nathan Rajlich)
+* [[`e1fe604c05`](https://github.com/TooTallNate/ref/commit/e1fe604c05)] - **test**: fix tests after V8 6.0 GC changes (Michaël Zasso, #85)
+
+1.3.4 / 2017-01-27
+==================
+
+* [[`32637be7e4`](https://github.com/TooTallNate/ref/commit/32637be7e4)] - CI stuffs (Nathan Rajlich)
+* [[`55716fd9e3`](https://github.com/TooTallNate/ref/commit/55716fd9e3)] - always use `defineProperty()` for `name` (Nathan Rajlich)
+* [[`786b73941e`](https://github.com/TooTallNate/ref/commit/786b73941e)] - **refType**: force name to writable before updating it (Joel Martin) (#67)
+
 1.3.3 / 2016-11-03
 ==================
 

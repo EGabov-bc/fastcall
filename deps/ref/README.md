@@ -1,9 +1,14 @@
-ref
-===
+ref-napi
+========
 ### Turn Buffer instances into "pointers"
-[![Build Status](https://secure.travis-ci.org/TooTallNate/ref.svg)](https://travis-ci.org/TooTallNate/ref)
-[![Build Status](https://ci.appveyor.com/api/projects/status/n8mswogp2im4uot8?svg=true)](https://ci.appveyor.com/project/TooTallNate/ref)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/node-ffi-napi/ref-napi.svg)](https://greenkeeper.io/)
+
+[![NPM Version](https://img.shields.io/npm/v/ref-napi.svg?style=flat)](https://npmjs.org/package/ref-napi)
+[![NPM Downloads](https://img.shields.io/npm/dm/ref-napi.svg?style=flat)](https://npmjs.org/package/ref-napi)
+[![Build Status](https://travis-ci.org/node-ffi-napi/ref-napi.svg?style=flat&branch=latest)](https://travis-ci.org/node-ffi-napi/ref-napi?branch=latest)
+[![Coverage Status](https://coveralls.io/repos/node-ffi-napi/ref-napi/badge.svg?branch=latest)](https://coveralls.io/r/node-ffi-napi/ref-napi?branch=latest)
+[![Dependency Status](https://david-dm.org/node-ffi-napi/ref-napi.svg?style=flat)](https://david-dm.org/node-ffi-napi/ref-napi)
 
 This module is inspired by the old `Pointer` class from node-ffi, but with the
 intent of using Node's fast `Buffer` instances instead of a slow C++ `Pointer`
@@ -28,7 +33,7 @@ Installation
 Install with `npm`:
 
 ``` bash
-$ npm install ref
+$ npm install ref-napi
 ```
 
 
@@ -46,7 +51,7 @@ var buf = new Buffer(4)
 buf.writeInt32LE(12345, 0)
 
 // first, what is the memory address of the buffer?
-console.log(buf.address())  // ← 140362165284824
+console.log(buf.hexAddress())  // ← '7FA89D006FD8'
 
 // using `ref`, you can set the "type", and gain magic abilities!
 buf.type = ref.types.int
@@ -142,6 +147,7 @@ License
 (The MIT License)
 
 Copyright (c) 2012 Nathan Rajlich &lt;nathan@tootallnate.net&gt;
+Copyright (c) 2017 Anna Henningsen &lt;anna@addaleax.net&gt; (N-API port)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
