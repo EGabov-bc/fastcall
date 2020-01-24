@@ -44,10 +44,19 @@ if (("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") OR ("${CMAKE_CXX_COMPILER_ID}"
 	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 endif()
 
+# Include N-API wrappers
+execute_process(COMMAND node -p "require('node-addon-api').include"
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE NODE_ADDON_API_DIR
+        )
+string(REPLACE "\n" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
+string(REPLACE "\"" "" NODE_ADDON_API_DIR ${NODE_ADDON_API_DIR})
+
 include_directories(
     ${DYNCALL_INCLUDE_DIRS}
     ${DYNCALLBACK_INCLUDE_DIRS}
     ${DYNLOAD_INCLUDE_DIRS}
+    ${NODE_ADDON_API_DIR}
     ${CMAKE_JS_INC}
     "${CMAKE_SOURCE_DIR}/deps/optional"
     "${CMAKE_SOURCE_DIR}/src")
