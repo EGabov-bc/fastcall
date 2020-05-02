@@ -14,7 +14,7 @@ Installation
 Install with `npm`:
 
 ``` bash
-$ npm install ref-struct
+$ npm install https://github.com/fishg/ref-struct
 ```
 
 

@@ -36,3 +36,4 @@ documentation/site
 *.includes
 .vscode/*.DB*
 *.kdev*
+.DS_Store

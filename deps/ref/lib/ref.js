@@ -1,5 +1,5 @@
-
 var assert = require('assert')
+var inspect = require('util').inspect
 var debug = require('debug')('ref')
 
 exports = module.exports = require('bindings')('binding')
@@ -33,8 +33,8 @@ exports = module.exports = require('bindings')('binding')
 
 /**
  * Accepts a `Buffer` instance and returns the memory address of the buffer
- * instance.
- *
+ * instance. Returns a JavaScript Number, which can't hold 64-bit integers,
+ * so this function is unsafe on 64-bit systems.
  * ```
  * console.log(ref.address(new Buffer(1)));
  * 4320233616
@@ -94,10 +94,10 @@ exports = module.exports = require('bindings')('binding')
  *
  * ```
  * var buf = new Buffer('hello world');
- * var pointer = ref.alloc('pointer');
+ * var pointer = ref.alloc('pointer', buf);
  *
  * var buf2 = ref.readPointer(pointer, 0, buf.length);
- * console.log(buf.toString());
+ * console.log(buf2.toString());
  * 'hello world'
  * ```
  *
@@ -306,7 +306,12 @@ exports.refType = function refType (type) {
   var rtn = Object.create(_type)
   rtn.indirection++
   if (_type.name) {
-    rtn.name = _type.name + '*'
+    Object.defineProperty(rtn, 'name', {
+      value: _type.name + '*',
+      configurable: true,
+      enumerable: true,
+      writable: true
+    })
   }
   return rtn
 }
@@ -1143,9 +1148,15 @@ Object.defineProperty(types, 'Utf8String', {
  * @name size_t
  */
 
+/**
+ * The `wchar_t` type.
+ *
+ * @name wchar_t
+ */
+
 // "typedef"s for the variable-sized types
 ;[ 'bool', 'byte', 'char', 'uchar', 'short', 'ushort', 'int', 'uint', 'long'
-, 'ulong', 'longlong', 'ulonglong', 'size_t' ].forEach(function (name) {
+, 'ulong', 'longlong', 'ulonglong', 'size_t', 'wchar_t' ].forEach(function (name) {
   var unsigned = name === 'bool'
               || name === 'byte'
               || name === 'size_t'
@@ -1408,7 +1419,15 @@ Buffer.prototype.reinterpretUntilZeros = function reinterpretUntilZeros (size, o
  * ```
  */
 
-Buffer.prototype.inspect = overwriteInspect(Buffer.prototype.inspect)
+var inspectSym = inspect.custom || 'inspect'
+/**
+ * in node 6.91, inspect.custom does not give a correct value; so in this case, don't torch the whole process.
+ * fixed in >6.9.2
+ */
+if (Buffer.prototype[inspectSym]){
+  Buffer.prototype[inspectSym] = overwriteInspect(Buffer.prototype[inspectSym])
+}
+
 
 // does SlowBuffer inherit from Buffer? (node >= v0.7.9)
 if (!(exports.NULL instanceof Buffer)) {
@@ -1441,7 +1460,13 @@ if (!(exports.NULL instanceof Buffer)) {
   SlowBuffer.prototype.writeInt64LE = Buffer.prototype.writeInt64LE
   SlowBuffer.prototype.readUInt64LE = Buffer.prototype.readUInt64LE
   SlowBuffer.prototype.writeUInt64LE = Buffer.prototype.writeUInt64LE
-  SlowBuffer.prototype.inspect = overwriteInspect(SlowBuffer.prototype.inspect)
+/**
+ * in node 6.9.1, inspect.custom does not give a correct value; so in this case, don't torch the whole process.
+ * fixed in >6.9.2
+ */
+  if (SlowBuffer.prototype[inspectSym]){
+    SlowBuffer.prototype[inspectSym] = overwriteInspect(SlowBuffer.prototype[inspectSym])
+  }
 }
 
 function overwriteInspect (inspect) {
