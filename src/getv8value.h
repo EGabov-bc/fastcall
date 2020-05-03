@@ -39,32 +39,38 @@ inline void* GetPointer(v8::Local<v8::Value> val)
 
 inline int8_t GetInt8(v8::Local<v8::Value> val)
 {
-    return static_cast<int8_t>(val->Int32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<int8_t>(val->Int32Value(context).FromJust());
 }
 
 inline uint8_t GetUInt8(v8::Local<v8::Value> val)
 {
-    return static_cast<uint8_t>(val->Uint32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<uint8_t>(val->Uint32Value(context).FromJust());
 }
 
 inline int16_t GetInt16(v8::Local<v8::Value> val)
 {
-    return static_cast<int16_t>(val->Int32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<int16_t>(val->Int32Value(context).FromJust());
 }
 
 inline uint16_t GetUInt16(v8::Local<v8::Value> val)
 {
-    return static_cast<uint16_t>(val->Uint32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<uint16_t>(val->Uint32Value(context).FromJust());
 }
 
 inline int32_t GetInt32(v8::Local<v8::Value> val)
 {
-    return static_cast<int32_t>(val->Int32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<int32_t>(val->Int32Value(context).FromJust());
 }
 
 inline uint32_t GetUInt32(v8::Local<v8::Value> val)
 {
-    return static_cast<uint32_t>(val->Uint32Value());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<uint32_t>(val->Uint32Value(context).FromJust());
 }
 
 inline int64_t GetInt64At(const Nan::FunctionCallbackInfo<v8::Value> info, const unsigned index)
@@ -74,12 +80,14 @@ inline int64_t GetInt64At(const Nan::FunctionCallbackInfo<v8::Value> info, const
 
 inline float GetFloat(v8::Local<v8::Value> val)
 {
-    return static_cast<float>(val->NumberValue());
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return static_cast<float>(val->NumberValue(context).FromJust());
 }
 
 inline double GetDouble(v8::Local<v8::Value> val)
 {
-    return val->NumberValue();
+    v8::Local<v8::Context> context = Nan::GetCurrentContext();
+    return val->NumberValue(context).FromJust();
 }
 
 inline char GetChar(v8::Local<v8::Value> val)
@@ -144,6 +152,6 @@ inline size_t GetSizeT(v8::Local<v8::Value> val)
 
 inline bool GetBool(v8::Local<v8::Value> val)
 {
-    return val->BooleanValue();
+    return val->BooleanValue(v8::Isolate::GetCurrent());
 }
 }

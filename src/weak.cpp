@@ -54,7 +54,7 @@ NAN_METHOD(adjustExternalMemory)
         return Nan::ThrowTypeError("1st argument is not a number.");
     }
 
-    info.GetReturnValue().Set(Nan::New((unsigned)Nan::AdjustExternalMemory(info[0]->Uint32Value())));
+    info.GetReturnValue().Set(Nan::New((unsigned)Nan::AdjustExternalMemory(info[0]->Uint32Value(info.GetIsolate()->GetCurrentContext()).ToChecked())));
 }
 
 }

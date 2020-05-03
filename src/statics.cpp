@@ -83,12 +83,12 @@ NAN_METHOD(fastcall::makeStringBuffer)
     }
 
     if (val->IsNumber()) {
-        auto num = val->Uint32Value();
+        auto num = val->Uint32Value(Nan::GetCurrentContext()).ToChecked();
         return info.GetReturnValue().Set(Nan::NewBuffer(num).ToLocalChecked());
     }
 
     if (val->IsString()) {
-        auto v8Str = val->ToString();
+        auto v8Str = Nan::To<v8::String>(val).ToLocalChecked();
         char* str = strdup(*Nan::Utf8String(val));
         return info.GetReturnValue().Set(
             Nan::NewBuffer(

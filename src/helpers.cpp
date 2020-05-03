@@ -31,7 +31,7 @@ bool fastcall::InstanceOf(const v8::Local<Object>& obj, v8::Local<Function> ctor
         if (proto.IsEmpty() || !proto->IsObject()) {
             return false;
         }
-        if (GetValue<Function>(proto, "constructor")->Equals(ctor)) {
+        if (GetValue<Function>(proto, "constructor")->Equals(obj->CreationContext(), ctor).FromJust()) {
             return true;
         }
         proto = proto->GetPrototype().As<Object>();

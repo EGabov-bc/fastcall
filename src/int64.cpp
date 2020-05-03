@@ -30,9 +30,10 @@ int64_t fastcall::GetInt64(const v8::Local<Value>& value)
     Nan::HandleScope scope;
 
     if (value->IsString()) {
-        return std::strtoll(*String::Utf8Value(value), nullptr, 0);
+        
+        return std::strtoll(*String::Utf8Value(v8::Isolate::GetCurrent(), value), nullptr, 0);
     }
-    return static_cast<int64_t>(value->NumberValue());
+    return static_cast<int64_t>(value->NumberValue(Nan::GetCurrentContext()).FromJust());
 }
 
 uint64_t fastcall::GetUint64(const v8::Local<Value>& value)
@@ -40,9 +41,9 @@ uint64_t fastcall::GetUint64(const v8::Local<Value>& value)
     Nan::HandleScope scope;
 
     if (value->IsString()) {
-        return std::strtoull(*String::Utf8Value(value), nullptr, 0);
+        return std::strtoull(*String::Utf8Value(v8::Isolate::GetCurrent(), value), nullptr, 0);
     }
-    return static_cast<uint64_t>(value->NumberValue());
+    return static_cast<uint64_t>(value->NumberValue(Nan::GetCurrentContext()).FromJust());
 }
 
 v8::Local<Value> fastcall::MakeInt64(int64_t value)

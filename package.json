@@ -18,7 +18,7 @@
     "debug": "4"
   },
   "scripts": {
-    "install": "cmake-js compile",
+    "install": "cmake-js compile --runtime=electron --runtime-version='6.1.10'",
     "test": "mocha -gc",
     "babel": "babel lib -d es5/lib --source-maps&&babel test -d es5/test --source-maps&&babel benchmarks -d es5/benchmarks --source-maps"
   },
@@ -30,5 +30,9 @@
     "ffi": "git+https://github.com/fishg/node-ffi.git#node-12",
     "mocha": "3",
     "rimraf": "^2.5.4"
+  },
+  "cmake-js": {
+    "runtime": "electron",
+    "runtimeVersion": "6.1.10"
   }
 }

@@ -137,7 +137,7 @@ inline void CallAsync(
 
 NAN_METHOD(newCallVM)
 {
-    unsigned size = info[0]->Uint32Value();
+    unsigned size = info[0]->Uint32Value(info.GetIsolate()->GetCurrentContext()).FromJust();
     auto ptr = dcNewCallVM(size);
     info.GetReturnValue().Set(WrapPointer(ptr));
 }
@@ -161,7 +161,7 @@ NAN_METHOD(setVMAndReset)
 NAN_METHOD(mode)
 {
     if (vm) {
-        dcMode(vm, info[0]->Int32Value());
+        dcMode(vm, info[0]->Int32Value(info.GetIsolate()->GetCurrentContext()).FromJust());
     }
 }
 
@@ -174,22 +174,22 @@ NAN_METHOD(reset)
 
 NAN_METHOD(argBool)
 {
-    dcArgBoolean(vm, info[0]->BooleanValue());
+    dcArgBoolean(vm, info[0]->BooleanValue(v8::Isolate::GetCurrent()));
 }
 
 NAN_METHOD(argChar)
 {
-    dcArgChar(vm, info[0]->Int32Value());
+    dcArgChar(vm, info[0]->Int32Value(info.GetIsolate()->GetCurrentContext()).FromJust());
 }
 
 NAN_METHOD(argShort)
 {
-    dcArgShort(vm, info[0]->Int32Value());
+    dcArgShort(vm, info[0]->Int32Value(info.GetIsolate()->GetCurrentContext()).FromJust());
 }
 
 NAN_METHOD(argInt)
 {
-    dcArgInt(vm, info[0]->Int32Value());
+    dcArgInt(vm, info[0]->Int32Value(info.GetIsolate()->GetCurrentContext()).FromJust());
 }
 
 NAN_METHOD(argLong)
@@ -204,12 +204,12 @@ NAN_METHOD(argLongLong)
 
 NAN_METHOD(argFloat)
 {
-    dcArgFloat(vm, info[0]->NumberValue());
+    dcArgFloat(vm, info[0]->NumberValue(info.GetIsolate()->GetCurrentContext()).FromJust());
 }
 
 NAN_METHOD(argDouble)
 {
-    dcArgDouble(vm, info[0]->NumberValue());
+    dcArgDouble(vm, info[0]->NumberValue(info.GetIsolate()->GetCurrentContext()).FromJust());
 }
 
 NAN_METHOD(argPointer)
