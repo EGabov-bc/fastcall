@@ -18,7 +18,7 @@
     "debug": "4"
   },
   "scripts": {
-    "install": "cmake-js compile --runtime=electron --runtime-version='17.3.0'",
+    "install": "cmake-js compile --runtime=electron --runtime-version='5.0.0'",
     "test": "mocha -gc",
     "babel": "babel lib -d es5/lib --source-maps&&babel test -d es5/test --source-maps&&babel benchmarks -d es5/benchmarks --source-maps"
   },
@@ -33,6 +33,6 @@
   },
   "cmake-js": {
     "runtime": "electron",
-    "runtimeVersion": "17.3.0"
+    "runtimeVersion": "5.0.0"
   }
 }
