@@ -33,6 +33,6 @@
   },
   "cmake-js": {
     "runtime": "electron",
-    "runtimeVersion": "6.1.10"
+    "runtimeVersion": "17.3.0"
   }
 }
